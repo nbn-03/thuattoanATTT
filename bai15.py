@@ -1,15 +1,26 @@
 import math
 def check_snt(n):
-    a =0
-    for i in range(1,n+1):
-        if(n%i==0):
-            a =a+1
-    if(a==2):
+    if n<=1:
+        return False
+    elif n<=3:
         return True
-    return False
+    elif n%2==0 or n%3==0:
+        return False
+    i =5
+    while i<=math.sqrt(n):
+        if n%i==0 or n%(i+2)==0:
+            return False
+        i = i+6
+    return True
+
 def find(n):
-    for i in range(0,n-1):
-        if(check_snt(i)==True and check_snt(i+2)==True):
-            print(i, i+2)
-n = int(input("Nhap vao so n: "))
+    l = []
+    for i in range(1,n+1):
+        if(check_snt(i)==True):
+            l.append(i)
+    for i in range(len(l)-1,0,-1):
+        if(l[i]-l[i-1]==2):
+            print(f"{l[i]}-{l[i-1]}")
+
+n = int(input("nhap n: "))
 find(n)
