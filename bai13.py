@@ -1,20 +1,26 @@
 import math
 def check_snt(n):
-    a =0
-    for i in range(1,n+1):
-        if(n%i==0):
-            a =a+1
-    if(a==2):
+    if n<=1:
+        return False
+    elif n<=3:
         return True
-    return False
+    elif n%2==0 or n%3==0:
+        return False
+    i = 5
+    while i<=math.sqrt(n):
+        if(n%i== 0 or n%(i+2)==0):
+            return False
+        i= i+6
+    return True
+
 def find(n):
-    list = []
-    for i in range(0,n+1):
+    l = []
+    for i in range(1,n+1):
         if(check_snt(i)==True):
-            list.append(i)
-    for i in range(0,len(list)):
-        for j in range(i,len(list)):
-            if((check_snt(list[i]+list[j]))==True and check_snt(int(math.fabs(list[i]-list[j])))==True):
-                print(list[i],list[j])
-n = int(input("Nhap vao so n: "))
+            l.append(i)
+    for i in range(0,len(l)):
+        for j in range(i, len(l)):
+            if(check_snt(l[i]+l[j])==True and check_snt(l[j]-l[i])==True):
+                print(f"{l[i]}-{l[j]}")
+n = int(input("nhap n: "))
 find(n)
