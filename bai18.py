@@ -1,4 +1,3 @@
-#sủa code trong thuật toán
 w=8
 t=4
 def find_array(n):
