@@ -1,4 +1,3 @@
-#sửa code trong thuật toán
 import math
 def check_snt(n):
     if n<=1:
