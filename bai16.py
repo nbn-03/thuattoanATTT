@@ -1,19 +1,31 @@
 import math
 import random
 def check_snt(n):
-    a =0
-    for i in range(1,n+1):
-        if(n%i==0):
-            a =a+1
-    if(a==2):
+    if n<=1:
+        return False
+    elif n<=3:
         return True
-    return False
-def find(n):
-    list = []
+    elif n%2==0 or n%3==0:
+        return False
+    i = 5
+    while i<=math.sqrt(n):
+        if n%i ==0 or n%(i+2)==0:
+            return False
+        i = i+6
+    return True
+
+def tao_mang(n):
+    l = []
     for i in range(0,n):
-        list.append(random.randint(0,1000))
-    for i in range(0,len(list)):
-        if(check_snt(list[i])==True):
-            print(list[i])
-n = int(input("Nhap vao so n: "))
-find(n)
+        l.append(random.randint(1,100))
+    return l
+
+def find(n):
+    l = tao_mang(n)
+    k = []
+    for i in range(0,len(l)):
+        if check_snt(i)==True:
+            k.append(i)
+    return k
+n = int(input("nhap n: "))
+print(find(n))
