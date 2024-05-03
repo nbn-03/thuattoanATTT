@@ -1,15 +1,19 @@
 import math
-def q_prime(n):
-    list_q_prime = []
-    for i in range(1,n+1):     
-        count = 2
-        for j in range (2, i):
-            if (i % j == 0):
-                count += 1
-        if count == 4:
-            list_q_prime.append(i)       
-    print(list_q_prime)
-def main():
-    n = int(input('Nhap vao so n: '))
-    q_prime(n)    
-main()
+def uoc(n):
+    dem = 0
+    for i in range(2,n):
+        if(n%i==0):
+            dem = dem + 1
+    return dem
+
+def Q_prime(n):
+    l = []
+    for i in range(1,n+1):
+        if(uoc(i)==2):
+            l.append(i)
+    return l
+
+n = int(input("nhap n: "))
+print(Q_prime(n))
+
+ 
