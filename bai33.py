@@ -1,3 +1,4 @@
+#câu khó 
 def div_and_mod(a,b):
     bin_a = a
     bin_b = b
