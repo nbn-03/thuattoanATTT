@@ -1,15 +1,21 @@
 import math
-def ktsnt(n):
-    a =0
-    for i in range(1,n+1):
-        if(n%i==0):
-            a =a+1
-    if(a==2):
+def check_snt(n):
+    if n<=1:
+        return False
+    elif n<=3:
         return True
-    return False
-def main():
-    a = int(input('Nhap vao so n: '))
-    for i in range(pow(10,a-1),pow(10,a)):
-        if(ktsnt(i)==True):
+    elif n%2==0 or n%3==0:
+        return False
+    i = 5 
+    while i<=math.sqrt(n):
+        if n%i==0 or n%(i+2)==0:
+            return False
+        i = i+6
+    return True
+
+def find(n):
+    for i in range(pow(10,n-1),pow(10,n)):
+        if check_snt(i) == True: 
             print(i)
-main()
+n = int(input("nhap n: "))
+find(n)
