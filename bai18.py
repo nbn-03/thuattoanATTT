@@ -1,32 +1,36 @@
-import math
-W = 8
-p = 2147483647
-m = math.ceil(math.log2(p))
-t = math.ceil(m/W)
-list1 = []
-list2 = []
-list3 = []
-def find_array(n,t):
-    list = []
+#sủa code trong thuật toán
+w=8
+t=4
+def find_array(n):
+    l = []
     for i in range(t-1,-1,-1):
-        list.append(n // pow(2,i*W))
-        n = n % pow(2,i*W)
-    return list
-def find_sum(a,b):
-    list1 = find_array(a,t)
-    list2 = find_array(b,t)
-    e = 0
-    sum = 0
-    for i in range (t-1,-1,-1):
-        sum=(list1[i]+list2[i]+e)
-        if (sum>=0 and sum<pow(2,W)):
-            list3.append(sum%pow(2,W))
+        l.append(n//pow(2,i*w))
+        n = n % pow(2,i*w)
+    return l
+def find(a,b):
+    l1 = find_array(a)
+    l2 = find_array(b)
+    l3 = []
+    e = 0 
+    for i in range(t-1,-1,-1):
+        sum = l1[i]+l2[i]+e
+        if(sum <pow(2,w)):
+            l3.append(sum)
             e = 0
         else:
-            list3.append(sum%pow(2,W))
+            l3.append(sum%pow(2,w))
             e = 1
-    list3.reverse() 
-    print(e,list3)
-a = int(input("nhap so a: "))
-b = int(input("nhap so b: "))
-find_sum(a,b)
+    l3.reverse()
+    return (e,l3)
+def array_to_num(a,b):
+    (e,l3) = find(a,b)
+    sum = 0
+    for i in range(0, len(l3)):
+        sum = sum + l3[i]*pow(2,(len(l3)-1-i)*w)
+    if e ==1 :
+        return sum +pow(2,32)
+    elif e==0:
+        return sum
+a = int(input("nhap a: "))
+b = int(input("nhap b: "))
+print(array_to_num(a,b))
