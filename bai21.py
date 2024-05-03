@@ -1,27 +1,31 @@
+#sửa code trong thuật toán
 import math
 def check_snt(n):
-    a =0
-    for i in range(1,n+1):
-        if(n%i==0):
-            a =a+1
-    if(a==2):
+    if n <=1:
+        return False
+    elif n<=3:
         return True
-    return False
-def check_ssnt(n):
+    elif n%2==0 or n%3==0:
+        return False
+    i = 5
+    while i<math.sqrt(n):
+        if n%i==0 or n%(i+2)==0:
+            return False
+        i = i+6
+    return True
+def dem(n):
     dem = 0
     for i in range(1,n):
-        if(check_snt(i)==True and check_snt(n)==True):
-            dem = dem +1
-    if(check_snt(dem)==True):
-        return True
-    return False
+        if (check_snt(i)==True):
+            dem = dem+1
+    return dem
+
 def find(a,b):
-    dem = 0
+    d = 0
     for i in range(a,b+1):
-        if(check_ssnt(i)==True):
-            dem = dem +1
-            #print(i)
-    print(dem)
+        if check_snt(dem(i))==True:
+            d = d +1
+    print(d)
 a = int(input("nhap so a: "))
 b = int(input("nhap so b: "))
 find(a,b)
