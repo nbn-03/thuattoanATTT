@@ -1,23 +1,31 @@
+#sửa code trong thuật toán
 import math
 def check_snt(n):
-    a =0
-    for i in range(1,n+1):
-        if(n%i==0):
-            a =a+1
-    if(a==2):
+    if n<=1:
+        return False
+    elif n<=3:
         return True
-    return False
-def check_f(n):
-    if(check_snt(n)==True):
+    elif n%2==0 or n%3==0:
+        return False
+    i = 5
+    while i<=math.sqrt(n):
+        if n%i==0 or n%(i+2)==0:
+            return False
+        i = i+6
+    return True
+def chuyen(n):
+    if check_snt(n)==True:
         return n
-    return 0
-def main():
-    print('Nhap vao khoang [L, R]: ')
-    l = int(input("Nhap vao gia tri L: "))
-    r = int(input('Nhap vao gia tri R: '))
+    elif check_snt(n)==False:
+        return 0
+def find(l,r):
     sum = 0
-    if 0<l<=10000 and 0<=r<=10000 and r>l:
-        for i in range(l, r+1):
-            for j in range(i+1, r+1):
-                sum += check_f(i) * check_f(j)
-main()
+    for i in range(l,r+1):
+        for j in range(i+1,r+1):
+            sum = sum + chuyen(i)*chuyen(j)
+    return sum
+print('Nhap vao khoang [L, R]: ')
+l = int(input("Nhap vao gia tri L: "))
+r = int(input('Nhap vao gia tri R: '))
+print(find(l,r))
+            
